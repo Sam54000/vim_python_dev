@@ -1,0 +1,167 @@
+" An example for a gvimrc file.
+" The commands in this are executed when the GUI is started, after the vimrc
+" has been executed.
+"
+" Maintainer:	Bram Moolenaar <Bram@vim.org>
+" Last change:	2016 Apr 05
+"
+" To use it, copy it to
+"         for Unix:  ~/.gvimrc
+"        for Amiga:  s:.gvimrc
+"   for MS-Windows:  $VIM\_gvimrc
+"        for Haiku:  ~/config/settings/vim/gvimrc
+"      for OpenVMS:  sys$login:.gvimrc
+
+" Make external commands work through a pipe instead of a pseudo-tty
+"set noguipty
+
+" set the X11 font to use
+" set guifont=-misc-fixed-medium-r-normal--14-130-75-75-c-70-iso8859-1
+
+set ch=2		" Make command line two lines high
+
+set mousehide		" Hide the mouse when typing text
+
+" Make shift-insert work like in Xterm
+map <S-Insert> <MiddleMouse>
+map! <S-Insert> <MiddleMouse>
+
+" Only do this for Vim version 5.0 and later.
+if version >= 500
+
+  " Switch on syntax highlighting if it wasn't on yet.
+  if !exists("syntax_on")
+    syntax on
+  endif
+
+  " For Win32 version, have "K" lookup the keyword in a help file
+  "if has("win32")
+  "  let winhelpfile='windows.hlp'
+  "  map K :execute "!start winhlp32 -k <cword> " . winhelpfile <CR>
+  "endif
+
+endif
+"Mapping keys
+nmap <C-h> <C-w>h
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-l> <C-w>l
+
+"remove the mouse mouahahaha
+set mouse-=a
+
+"Colors
+let base16colorspace=256  " Access colors present in 256 colorspace
+
+"""""""""""""GUI features"""""""""
+
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
+
+
+"""""""""""""""""Font"""""""""""""""
+
+if has("gui_running")
+  if has("gui_gtk2")
+    set guifont=Inconsolata\ 12
+  elseif has("gui_macvim")
+    set guifont=Menlo\ Regular:h14
+  elseif has("gui_win32")
+    set guifont=Hack:h10:cANSI
+  endif
+endif
+
+"""""""toggle on the line numbers""""""""
+set rnu
+set cursorline
+
+"""""""""""""Ale options"""""""""""""""""
+
+let g:ale_linters = {
+      \ 'python' : ['pylama'],
+      \}
+let g:ale_fixers = {
+      \ 'python' : ['black','add_blank_lines_for_python_control_statements','isort','remove_trailing_lines','trim_whitespace'],
+      \}
+
+let g:ale_echo_cursor = 1
+let g:ale_linters_explicit = 1
+let g:ale_set_highlights = 0
+let g:ale_set_quickfix = 0
+let g:ale_set_loclist = 1
+let g:ale_virtualtext_cursor = 0
+let g:ale_sign_error = '>'
+let g:ale_sign_warning = '-'
+highlight clear SignColumn
+highlight ALEErrorSign ctermfg=red
+highlight ALEWarningSign ctermfg=yellow
+let g:ale_completion_enabled = 1
+
+"""""""""""""""Airline"""""""""""""""""""
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'jellybeans'
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" airline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
+"""""""""""Stylizing file browser netrew""""""""""
+
+"Open in splits netrw
+augroup ProjectDrawer
+  autocmd!
+  autocmd VimEnter * :Lexplore
+  autocmd VimEnter * wincmd l
+  autocmd colorscheme * highlight clear SignColumn
+  "Overide colorscheme highlighting
+  autocmd colorscheme * highlight ALEErrorSign term=reverse ctermfg=0 ctermbg=1 guifg=#ff0000 
+  autocmd colorscheme * highlight ALEWarningSign term=reverse ctermfg=0 ctermbg=1 guifg=#fcd12a
+  autocmd VimEnter * wincmd k
+augroup ENDautocmd VimEnter * Vex
+
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 50
+let g:netrw_banner = 0
+
+"""""""""""""""""Colorscheme""""""""""""""""""""""""
+colorscheme base16-spacemacs
+"indentLine
+let g:indentLine_color_term = 241
+let g:indentLine_char_list = ['│']
+
+"Set the ruler"
+set colorcolumn=80
+highlight ColorColumn ctermbg=darkgrey guibg=lightgrey
+
+"Python higlighting"
+let python_highlight_all=1
+syntax on
