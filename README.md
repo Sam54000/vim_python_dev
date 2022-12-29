@@ -17,4 +17,5 @@ To install manually. VIM plugins messes with folders
 - For git integration: [fugitive](https://github.com/tpope/vim-fugitive) (not tested yet)
 - To see indentation: [indentline](https://github.com/Yggdroot/indentLine)
 - To test python code with iPython in a terminal: [vim-slime](https://github.com/jpalardy/vim-slime)
+- For icons and specific glyphs integration: [vim-devicons](https://github.com/ryanoasis/vim-devicons)
 
