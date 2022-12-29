@@ -7,6 +7,7 @@
 - [Base16 colors for gvim or vim](https://github.com/chriskempson/base16-vim) or for [shell](https://github.com/chriskempson/base16-shell)
 - [Msgpack](https://github.com/msgpack/msgpack-python) for code completion 
 - [Python LSP server](https://github.com/python-lsp/python-lsp-server) `pip install python-lsp-server`
+- iPython needs to be installed too `pip install ipython`
 ## Plugins
 To install manually. VIM plugins messes with folders
 - For statusbar [airline](https://github.com/vim-airline/vim-airline) and [aireline-themes](https://github.com/vim-airline/vim-airline-themes#vim-airline-themes--)
@@ -15,5 +16,5 @@ To install manually. VIM plugins messes with folders
 - To facilitate commenting several lines: [commentary](https://github.com/tpope/vim-commentary) (not tested yet)
 - For git integration: [fugitive](https://github.com/tpope/vim-fugitive) (not tested yet)
 - To see indentation: [indentline](https://github.com/Yggdroot/indentLine)
-- To test python code seamlessly: [vim-test](https://github.com/vim-test/vim-test)
+- To test python code with iPython in a terminal: [vim-slime](https://github.com/jpalardy/vim-slime)
 
