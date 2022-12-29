@@ -41,6 +41,9 @@ if version >= 500
   "endif
 
 endif
+
+set encoding=utf8
+
 "Mapping keys
 nmap <C-h> <C-w>h
 nmap <C-j> <C-w>j
@@ -55,13 +58,11 @@ let base16colorspace=256  " Access colors present in 256 colorspace
 
 """""""""""""GUI features"""""""""
 
-set guioptions-=m  "remove menu bar
+"set guioptions-=m  remove menu bar
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
 
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
 
 """""""""""""""""Font"""""""""""""""
 
@@ -71,9 +72,13 @@ if has("gui_running")
   elseif has("gui_macvim")
     set guifont=Menlo\ Regular:h14
   elseif has("gui_win32")
-    set guifont=Hack:h10:cANSI
+    set guifont=Hack_NFM:h10:cANSI
   endif
 endif
+"""""""""""""""slime"""""""""""""""""""""
+let g:slime_target = "vimterminal"
+let g:slime_vimterminal_cmd = "ipython"
+let g:slime_vimterminal_config = {"vertical":500}
 
 """""""toggle on the line numbers""""""""
 set rnu
@@ -107,33 +112,33 @@ let g:ale_completion_enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'jellybeans'
+"call airline#parts#define_accent('mode', 'bold')
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 
 " unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
+let airline#extensions#ale#error_symbol = 'E:'
+let airline#extensions#ale#warning_symbol = 'W:'
+let g:airline_symbols.crypt = ''
+let g:airline_symbols.paste = ''
 let g:airline_symbols.paste = '∥'
+let g:airline_symbols.spell = 'Ꞩ'
+let g:airline_symbols.notexists = ' U'
 let g:airline_symbols.whitespace = 'Ξ'
 
-" airline symbols
+" powerline symbols
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
+let g:airline_symbols.colnr = ':'
 let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
+let g:airline_symbols.linenr = ' :'
+let g:airline_symbols.maxlinenr = ' '
+let g:airline_symbols.dirty=' '
 
 """""""""""Stylizing file browser netrew""""""""""
 
@@ -150,7 +155,7 @@ augroup ProjectDrawer
 augroup ENDautocmd VimEnter * Vex
 
 let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
+let g:netrw_browse_split = 0
 let g:netrw_altv = 1
 let g:netrw_winsize = 15
 let g:netrw_banner = 0
@@ -168,5 +173,13 @@ highlight ColorColumn ctermbg=darkgrey guibg=lightgrey
 "Python higlighting"
 let python_highlight_all=1
 syntax on
+
+"Cursor blinking off
+:set guicursor+=a:blinkon0
+
+"Background
+highlight Normal guibg='#141414'
+
 "Full window
 autocmd GUIEnter * simalt ~x
+"how to split the new window
