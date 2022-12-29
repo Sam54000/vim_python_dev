@@ -115,13 +115,14 @@ augroup ProjectDrawer
   autocmd VimEnter * wincmd k
 augroup ENDautocmd VimEnter * Vex
 
+colorscheme base16-spacemacs
 "indentLine
 let g:indentLine_color_term = 241
 let g:indentLine_char_list = ['│']
 
 "Set the ruler"
 set colorcolumn=80
-highlight ColorColumn ctermbg=darkgrey guibg=lightgrey
+highlight ColorColumn ctermbg=darkgsrey guibg=lightgrey
 
 "Python higlighting"
 let python_highlight_all=1
