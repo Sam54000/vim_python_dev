@@ -3,7 +3,7 @@
 - Python linter [pylama](https://klen.github.io/pylama/) `pip install pylama`
 - Python fixers [black](https://github.com/psf/black) `pip install black`
 - [Powerline plugin for terminal](https://github.com/powerline/fonts) (optional)
-- [Powerline fonts](https://github.com/powerline/fonts)
+- [Nerd Font](https://www.nerdfonts.com/#features)
 - [Base16 colors for gvim or vim](https://github.com/chriskempson/base16-vim) or for [shell](https://github.com/chriskempson/base16-shell)
 - [Msgpack](https://github.com/msgpack/msgpack-python) for code completion 
 - [Python LSP server](https://github.com/python-lsp/python-lsp-server) `pip install python-lsp-server`
