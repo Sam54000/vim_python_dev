@@ -12,9 +12,9 @@
 To install manually. VIM plugins messes with folders
 - For statusbar [airline](https://github.com/vim-airline/vim-airline) and [aireline-themes](https://github.com/vim-airline/vim-airline-themes#vim-airline-themes--)
 - For coding style, errors linting, fixing [ale](https://github.com/dense-analysis/ale#usage)
-- To facilitate code completion for python: [Jedi-vim](https://github.com/davidhalter/jedi-vim) (not tested yet)
-- To facilitate commenting several lines: [commentary](https://github.com/tpope/vim-commentary) (not tested yet)
-- For git integration: [fugitive](https://github.com/tpope/vim-fugitive) (not tested yet)
+- To facilitate code completion for python: [Jedi-vim](https://github.com/davidhalter/jedi-vim)
+- To facilitate commenting several lines: [commentary](https://github.com/tpope/vim-commentary)
+- For git integration: [fugitive](https://github.com/tpope/vim-fugitive)
 - To see indentation: [indentline](https://github.com/Yggdroot/indentLine)
 - To test python code with iPython in a terminal: [vim-slime](https://github.com/jpalardy/vim-slime)
 - For icons and specific glyphs integration: [vim-devicons](https://github.com/ryanoasis/vim-devicons)
