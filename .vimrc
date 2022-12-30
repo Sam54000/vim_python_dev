@@ -20,6 +20,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'Yggdroot/indentLine'
 Plug 'jpalardy/vim-slime', { 'for': 'python' }
 Plug 'ryanoasis/vim-devicons'
+Plug 'wakatime/vim-wakatime'
 call plug#end()
 "-------------------------------------------------------------------------------
 "               ALE OPTIONS
@@ -103,14 +104,14 @@ let g:indentLine_char_list = ['│']
 nnoremap <S-UP> :call TermToggle()<CR>
 vnoremap <S-UP> <ESC>:call TermToggle()<CR>
 inoremap <S-UP> <ESC>:call TermToggle()<CR>
-tnoremap <S-UP> exit<CR>
+tnoremap <S-UP> <C-W>:q!<CR>
 
 function! TermToggle()
     if term_list() == []
         vert botright terminal ipython
     else
         for term in term_list()
-            call term_sendkeys(term, "exit\<cr>")
+	    call term_sendkeys(term, "<c-w>:q!<cr>")
         endfor
     endif
 endfunction
