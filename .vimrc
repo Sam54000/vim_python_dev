@@ -101,6 +101,9 @@ let g:netrw_banner=0
 let g:indentLine_color_term = 241
 let g:indentLine_char_list = ['│']
 
+"-------------------------------------------------------------------------------
+" TOGGLE iPython
+"-------------------------------------------------------------------------------
 nnoremap <S-UP> :call TermToggle()<CR>
 vnoremap <S-UP> <ESC>:call TermToggle()<CR>
 inoremap <S-UP> <ESC>:call TermToggle()<CR>
@@ -111,7 +114,7 @@ function! TermToggle()
         vert botright terminal ipython
     else
         for term in term_list()
-	    call term_sendkeys(term, "<c-w>:q!<cr>")
+	    call term_sendkeys(term, "<c-w>:q!<cr>") " I want with tmux in term
         endfor
     endif
 endfunction
