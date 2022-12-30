@@ -1,3 +1,4 @@
+set termguicolors
 set relativenumber "Set relative line numbers
 set cursorline 	   "Set the cursorline
 set mouse-=a	   "Disable the mouse in gui
@@ -18,7 +19,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'Yggdroot/indentLine'
 Plug 'jpalardy/vim-slime', { 'for': 'python' }
-Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
 "-------------------------------------------------------------------------------
@@ -50,7 +50,6 @@ let g:ale_completion_enabled = 1
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'jellybeans'
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
@@ -62,9 +61,9 @@ let g:airline_symbols.paste = 'p'
 let g:airline_symbols.spell = 'Ꞩ'
 let g:airline_symbols.notexists = ' U'
 " powerline symbols
-let g:airline_left_sep = ''
+let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
+let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.colnr = 'C:'
@@ -73,7 +72,7 @@ let g:airline_symbols.linenr = ' L:'
 let g:airline_symbols.maxlinenr = ' '
 let g:airline_symbols.dirty=' '
 "-------------------------------------------------------------------------------
-"              NETREW AND OTHER
+" NETRW
 "-------------------------------------------------------------------------------
 
 augroup ProjectDrawer
@@ -86,9 +85,6 @@ augroup ProjectDrawer
   autocmd colorscheme * highlight ALEErrorSign term=reverse ctermfg=0 ctermbg=1 guifg=#ff0000 
   autocmd colorscheme * highlight ALEWarningSign term=reverse ctermfg=0 ctermbg=1 guifg=#fcd12a
   autocmd VimEnter * highlight VertSplit guifg=#3b3b3b guibg=black
-  autocmd VimEnter * rightb vert term ipython 
-  autocmd VimEnter * vertical resize 25
-  autocmd VimEnter * wincmd h
   autocmd VimEnter * highlight clear LineNr " Set line number color to transparent
 augroup ENDautocmd VimEnter * Vex
 let g:netrw_liststyle = 3
@@ -103,10 +99,18 @@ let g:netrw_banner=0
 
 let g:indentLine_color_term = 241
 let g:indentLine_char_list = ['│']
-filetype plugin on
-"-------------------------------------------------------------------------------
-"                  SLIME
-"-------------------------------------------------------------------------------
 
-let g:slime_target = "vimterminal"
-let g:slime_python_ipython = 1
+nnoremap <S-UP> :call TermToggle()<CR>
+vnoremap <S-UP> <ESC>:call TermToggle()<CR>
+inoremap <S-UP> <ESC>:call TermToggle()<CR>
+tnoremap <S-UP> exit<CR>
+
+function! TermToggle()
+    if term_list() == []
+        vert botright terminal ipython
+    else
+        for term in term_list()
+            call term_sendkeys(term, "exit\<cr>")
+        endfor
+    endif
+endfunction
