@@ -1,3 +1,4 @@
+
 set relativenumber "Set relative line numbers
 set cursorline 	   "Set the cursorline
 set mouse-=a	   "Disable the mouse in gui
@@ -13,9 +14,10 @@ Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'dense-analysis/ale'
-Plug 'davidhalter/jedi'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
 Plug 'Yggdroot/indentLine'
 Plug 'jpalardy/vim-slime', { 'for': 'python' }
 Plug 'ryanoasis/vim-devicons'
@@ -43,7 +45,8 @@ let g:ale_sign_warning = '-'
 highlight clear SignColumn
 highlight ALEErrorSign ctermfg=red
 highlight ALEWarningSign ctermfg=yellow
-let g:ale_completion_enabled = 1
+let g:ale_completion_enabled = 0
+let g:ale_disable_lsp = 1
 "-------------------------------------------------------------------------------
 " AIRLINE
 "-------------------------------------------------------------------------------
@@ -61,7 +64,7 @@ let g:airline_symbols.paste = 'p'
 let g:airline_symbols.spell = 'Ꞩ'
 let g:airline_symbols.notexists = ' U'
 " powerline symbols
-let g:airline_left_sep = ''
+let g:airline_left_sep =''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
@@ -126,3 +129,14 @@ nnoremap <S-left> <C-w>h
 nnoremap <S-down> <C-w>j
 nnoremap <S-up> <C-w>k
 nnoremap <S-right> <C-w>l 
+"-------------------------------------------------------------------------------
+" SLIME
+"-------------------------------------------------------------------------------
+let g:slime_target = "vimterminal"
+let g:slime_python_ipython = 1
+
+if exists('$BASE16_THEME')
+      \ && (!exists('g:colors_name') || g:colors_name != 'base16-$BASE16_THEME')
+    let base16colorspace=256
+    colorscheme base16-$BASE16_THEME
+endif
