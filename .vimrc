@@ -1,4 +1,3 @@
-set termguicolors
 set relativenumber "Set relative line numbers
 set cursorline 	   "Set the cursorline
 set mouse-=a	   "Disable the mouse in gui
