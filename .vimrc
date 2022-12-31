@@ -104,10 +104,10 @@ let g:indentLine_char_list = ['│']
 "-------------------------------------------------------------------------------
 " TOGGLE iPython
 "-------------------------------------------------------------------------------
-nnoremap <S-UP> :call TermToggle()<CR>
-vnoremap <S-UP> <ESC>:call TermToggle()<CR>
-inoremap <S-UP> <ESC>:call TermToggle()<CR>
-tnoremap <S-UP> <C-W>:q!<CR>
+nnoremap <S-CR> :call TermToggle()<CR>
+vnoremap <S-CR> <ESC>:call TermToggle()<CR>
+inoremap <S-CR> <ESC>:call TermToggle()<CR>
+tnoremap <S-CR> <C-W>:q!<CR>
 
 function! TermToggle()
     if term_list() == []
@@ -115,7 +115,15 @@ function! TermToggle()
 	vertical resize 25	
     else
         for term in term_list()
-	    call term_sendkeys(term, "<c-w>:q!<cr>") " I want with tmux in term
+	    call term_sendkeys(term, "exit") " I want with tmux in term
         endfor
     endif
 endfunction
+
+"-------------------------------------------------------------------------------
+" OTHER KEY BINDDINGS
+"-------------------------------------------------------------------------------
+nnoremap <S-left> <C-w>h
+nnoremap <S-down> <C-w>j
+nnoremap <S-up> <C-w>k
+nnoremap <S-right> <C-w>l 

@@ -111,11 +111,14 @@ tnoremap <S-UP> <C-W>:q!<CR>
 
 function! TermToggle()
     if term_list() == []
-        vert botright terminal ipython
-	resize 20
+        vert botright terminal ipython 
+	vertical resize 25	
     else
         for term in term_list()
-	    call term_sendkeys(term, "<c-w>:q!<cr>") " I want with tmux in term
+	    SendToTerm(<c-w>:q!<cr>) " I want with tmux in term
         endfor
     endif
+endfunction
+function! SendToTerm(command)
+	call term_sendkeys('', a:command)
 endfunction
