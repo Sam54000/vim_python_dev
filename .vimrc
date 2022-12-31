@@ -6,7 +6,7 @@ set ttymouse-=a	   "Disable mouse in terminal
 set guifont=RobotoMonoNerdFontCompleteM-Regular:h12 "Font
 set fillchars+=vert:\│
 "-------------------------------------------------------------------------------
-"               PLUGINS
+" PLUGINS
 "-------------------------------------------------------------------------------
 
 call plug#begin()
@@ -23,7 +23,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'wakatime/vim-wakatime'
 call plug#end()
 "-------------------------------------------------------------------------------
-"               ALE OPTIONS
+" ALE OPTIONS
 "-------------------------------------------------------------------------------
 
 let g:ale_linters = {
@@ -46,7 +46,7 @@ highlight ALEErrorSign ctermfg=red
 highlight ALEWarningSign ctermfg=yellow
 let g:ale_completion_enabled = 1
 "-------------------------------------------------------------------------------
-"                AIRLINE
+" AIRLINE
 "-------------------------------------------------------------------------------
 
 let g:airline#extensions#tabline#enabled = 1
@@ -95,7 +95,7 @@ let g:netrw_winsize = 18
 let g:netrw_banner=0
 
 "-------------------------------------------------------------------------------
-"                INDENTLINE
+" INDENTLINE
 "-------------------------------------------------------------------------------
 
 let g:indentLine_color_term = 241
