@@ -1,10 +1,29 @@
-
+"-------------------------------------------------------------------------------
+" GENERAL ENVIRONMENT SETTINGS 
+"------------------------------------------------------------------------------- 
+set number	   "Display the current line absolute number
 set relativenumber "Set relative line numbers
 set cursorline 	   "Set the cursorline
+set scrolloff=8  "Set the number of line the cursor stops before botom
+set showcmd	   "Show the commands that being typed
+set noshowmode     "No nee to show the mode in the command line
+set noerrorbells visualbell t_vb=  "stop the annoying bell when error
+set noswapfile	   "No swapfile generation
+set nobackup	   "No backup
+set undodir=~/.vim/undodir "Undo directory
+set undofile	   "Create undofile instead of swap and backup
 set mouse-=a	   "Disable the mouse in gui
 set ttymouse-=a	   "Disable mouse in terminal
 set guifont=RobotoMonoNerdFontCompleteM-Regular:h12 "Font
 set fillchars+=vert:\│
+"-------------------------------------------------------------------------------
+" SEARCH PARAMETERS
+"------------------------------------------------------------------------------- 
+set ignorecase     "Ignore case when search
+set smartcase	   "But if a case is in typed, respect it
+set incsearch	   "Highlight the pattern live 
+set hlsearch	   "Highlight the search result
+nnoremap <CR> :noh<CR><CR>:<backspace>
 "-------------------------------------------------------------------------------
 " PLUGINS
 "-------------------------------------------------------------------------------
@@ -22,6 +41,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'jpalardy/vim-slime', { 'for': 'python' }
 Plug 'ryanoasis/vim-devicons'
 Plug 'wakatime/vim-wakatime'
+" Plug 'junegunn/fzf.vim'
 call plug#end()
 "-------------------------------------------------------------------------------
 " ALE OPTIONS
