@@ -3,7 +3,6 @@
 "------------------------------------------------------------------------------- 
 set number	   "Display the current line absolute number
 set relativenumber "Set relative line numbers
-set cursorline 	   "Set the cursorline
 set scrolloff=8  "Set the number of line the cursor stops before botom
 set showcmd	   "Show the commands that being typed
 set noshowmode     "No nee to show the mode in the command line
@@ -16,6 +15,13 @@ set mouse-=a	   "Disable the mouse in gui
 set ttymouse-=a	   "Disable mouse in terminal
 set guifont=RobotoMonoNerdFontCompleteM-Regular:h12 "Font
 set fillchars+=vert:\│
+set cursorline "Enable cursor line
+
+" Change Color when entering Insert Mode
+autocmd InsertEnter * highlight  CursorLine guibg=#005f00 ctermbg=22 ctermfg=None
+
+" Revert Color to default when leaving Insert Mode
+autocmd InsertLeave * highlight  CursorLine guibg=#262626 ctermbg=235 ctermfg=None
 "-------------------------------------------------------------------------------
 " SEARCH PARAMETERS
 "------------------------------------------------------------------------------- 
