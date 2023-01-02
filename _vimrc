@@ -6,10 +6,10 @@ set relativenumber "Set relative line numbers
 set scrolloff=8  "Set the number of line the cursor stops before botom
 set showcmd	   "Show the commands that being typed
 set noshowmode     "No nee to show the mode in the command line
-set noerrorbells visualbell t_vb=  "stop the annoying bell when error
+set noerrorbells t_vb=  "stop the annoying bell when error
 set noswapfile	   "No swapfile generation
 set nobackup	   "No backup
-set undodir=~/_vim/undodir "Undo directory
+set undodir=~/Vim/undodir "Undo directory
 set undofile	   "Create undofile instead of swap and backup
 set mouse-=a	   "Disable the mouse in gui
 set ttymouse-=a	   "Disable mouse in terminal
@@ -18,7 +18,7 @@ set fillchars+=vert:\│
 autocmd GUIEnter * simalt ~x
 set cursorline "Enable cursor line
 
-" Change Color when entering Insert Mode
+" Change Color when entering Insert Mode #005f00
 autocmd InsertEnter * highlight  CursorLine guibg=#005f00 ctermbg=22 ctermfg=None
 
 " Revert Color to default when leaving Insert Mode
