@@ -14,7 +14,6 @@ set undofile	   "Create undofile instead of swap and backup
 set mouse-=a	   "Disable the mouse in gui
 set ttymouse-=a	   "Disable mouse in terminal
 set guifont=RobotoMono_NFM:h9 "Font
-set fillchars+=vert:\│
 autocmd GUIEnter * simalt ~x
 set cursorline "Enable cursor line
 
@@ -23,6 +22,7 @@ autocmd InsertEnter * highlight  CursorLine guibg=#005f00 ctermbg=22 ctermfg=Non
 
 " Revert Color to default when leaving Insert Mode
 autocmd InsertLeave * highlight  CursorLine guibg=#262626 ctermbg=235 ctermfg=None
+set updatetime=1500
 "-------------------------------------------------------------------------------
 " SEARCH PARAMETERS
 "------------------------------------------------------------------------------- 
@@ -31,6 +31,8 @@ set smartcase	   "But if a case is in typed, respect it
 set incsearch	   "Highlight the pattern live 
 set hlsearch	   "Highlight the search result
 nnoremap <CR> :noh<CR><CR>:<backspace>
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
 "-------------------------------------------------------------------------------
 " PLUGINS
 "-------------------------------------------------------------------------------
@@ -46,6 +48,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
 Plug 'Yggdroot/indentLine'
 Plug 'jpalardy/vim-slime', { 'for': 'python' }
+Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
 Plug 'ryanoasis/vim-devicons'
 Plug 'wakatime/vim-wakatime'
 " Plug 'junegunn/fzf.vim'
@@ -74,6 +77,7 @@ highlight ALEErrorSign ctermfg=red
 highlight ALEWarningSign ctermfg=yellow
 let g:ale_completion_enabled = 0
 let g:ale_disable_lsp = 1
+let g:ale_fix_on_save = 1
 "-------------------------------------------------------------------------------
 " AIRLINE
 "-------------------------------------------------------------------------------
@@ -124,6 +128,27 @@ let g:netrw_winsize = 18
 let g:netrw_banner=0
 
 "-------------------------------------------------------------------------------
+" COC
+"-------------------------------------------------------------------------------
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "<C-CR>\<c-r>=coc#on_enter()\<C-CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Highlight the symbol and its references when holding the cursor
+nnoremap <Tab> :silent call CocActionAsync('highlight')
+"-------------------------------------------------------------------------------
 " INDENTLINE
 "-------------------------------------------------------------------------------
 
@@ -133,22 +158,18 @@ let g:indentLine_char_list = ['│']
 "-------------------------------------------------------------------------------
 " TOGGLE iPython
 "-------------------------------------------------------------------------------
-nnoremap <S-CR> :call TermToggle()<CR>
-vnoremap <S-CR> <ESC>:call TermToggle()<CR>
-inoremap <S-CR> <ESC>:call TermToggle()<CR>
-tnoremap <S-CR> <C-W>:q!<CR>
+nnoremap <S-CR> vip<S-CR>
+vnoremap <S-CR> "cy :call TermToggle()<CR>
+inoremap <S-CR> <ESC> vip<S-CR>
 
 function! TermToggle()
     if term_list() == []
-        vert botright terminal ipython 
-	vertical resize 25	
-    else
-        for term in term_list()
-	    call term_sendkeys(term, "exit") " I want with tmux in term
-        endfor
+        vert botright terminal ipython
+	vertical resize 45 
     endif
 endfunction
 
+let g:slime_python_ipython = 1
 "-------------------------------------------------------------------------------
 " OTHER KEY BINDDINGS
 "-------------------------------------------------------------------------------
@@ -157,10 +178,8 @@ nnoremap <S-down> <C-w>j
 nnoremap <S-up> <C-w>k
 nnoremap <S-right> <C-w>l 
 "-------------------------------------------------------------------------------
-" SLIME
+" COLOR
 "-------------------------------------------------------------------------------
-let g:slime_target = "vimterminal"
-let g:slime_python_ipython = 1
 
 if exists('$BASE16_THEME')
       \ && (!exists('g:colors_name') || g:colors_name != 'base16-$BASE16_THEME')
