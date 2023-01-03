@@ -156,20 +156,25 @@ let g:indentLine_color_term = 241
 let g:indentLine_char_list = ['│']
 
 "-------------------------------------------------------------------------------
-" TOGGLE iPython
+" SLIME do not use their ipython workaround!!!!!
 "-------------------------------------------------------------------------------
-nnoremap <S-CR> vip<S-CR>
-vnoremap <S-CR> "cy :call TermToggle()<CR>
-inoremap <S-CR> <ESC> vip<S-CR>
+let g:slime_target = "vimterminal"
+let g:slime_vimterminal_cmd = "ipython"
 
-function! TermToggle()
-    if term_list() == []
-        vert botright terminal ipython
-	vertical resize 45 
-    endif
+noremap <S-CR> :call IpythonTerminal()<CR>
+
+xmap <c-c><c-c> <Plug>SlimeRegionSend
+nmap <c-c><c-c> <Plug>SlimeParagraphSend
+nmap <c-c>v     <Plug>SlimeConfig
+function! IpythonTerminal()
+  if term_list() == []
+    vert botright terminal ipython
+    vertical resize 45
+    wincmd h
+  endif
 endfunction
+nmap <Space> :call term_sendkeys('!ipython',"\<lt>cr>")<CR>
 
-let g:slime_python_ipython = 1
 "-------------------------------------------------------------------------------
 " OTHER KEY BINDDINGS
 "-------------------------------------------------------------------------------
