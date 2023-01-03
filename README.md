@@ -28,5 +28,5 @@ No need to install the other aforementionned plugins, the .vimrc in this reposit
 
 Run `:CocInstall coc-jedi`
 
-##TODO
+## TODO
 Modify dotfiles for mac to deal with slime-plugin and ipython
