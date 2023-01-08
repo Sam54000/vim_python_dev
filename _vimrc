@@ -23,6 +23,12 @@ autocmd InsertEnter * highlight  CursorLine guibg=#005f00 ctermbg=22 ctermfg=Non
 " Revert Color to default when leaving Insert Mode
 autocmd InsertLeave * highlight  CursorLine guibg=#262626 ctermbg=235 ctermfg=None
 set updatetime=1500
+let base16colorspace=256   		" Access colors present in 256 colorspace
+
+"-------------------------------------------------------------------------------
+" FOLDING
+"-------------------------------------------------------------------------------
+
 "-------------------------------------------------------------------------------
 " SEARCH PARAMETERS
 "------------------------------------------------------------------------------- 
@@ -48,8 +54,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
 Plug 'Yggdroot/indentLine'
 Plug 'jpalardy/vim-slime', { 'for': 'python' }
-Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
 Plug 'ryanoasis/vim-devicons'
+Plug 'vim-python/python-syntax'
 Plug 'wakatime/vim-wakatime'
 " Plug 'junegunn/fzf.vim'
 call plug#end()
@@ -148,6 +154,7 @@ endfunction
 
 " Highlight the symbol and its references when holding the cursor
 nnoremap <Tab> :silent call CocActionAsync('highlight')
+nnoremap <S-C-r> <Plug>(coc-rename)
 "-------------------------------------------------------------------------------
 " INDENTLINE
 "-------------------------------------------------------------------------------
@@ -160,16 +167,16 @@ let g:indentLine_char_list = ['│']
 "-------------------------------------------------------------------------------
 let g:slime_target = "vimterminal"
 let g:slime_vimterminal_cmd = "ipython"
+let g:slime_cell_delimiter = "#%%"
 
 noremap <S-CR> :call IpythonTerminal()<CR>
 
 xmap <c-c><c-c> <Plug>SlimeRegionSend
-nmap <c-c><c-c> <Plug>SlimeParagraphSend
-nmap <c-c>v     <Plug>SlimeConfig
+nmap <c-c>s     <Plug>SlimeSendCell
 function! IpythonTerminal()
   if term_list() == []
     vert botright terminal ipython
-    vertical resize 45
+    vertical resize 65
     wincmd h
   endif
 endfunction
@@ -181,13 +188,17 @@ nmap <Space> :call term_sendkeys('!ipython',"\<lt>cr>")<CR>
 nnoremap <S-left> <C-w>h
 nnoremap <S-down> <C-w>j
 nnoremap <S-up> <C-w>k
-nnoremap <S-right> <C-w>l 
+nnoremap <S-right> <C-w>l
+"------------------------------------------------------------------------------- 
+" FOLDING
+"-------------------------------------------------------------------------------
 "-------------------------------------------------------------------------------
 " COLOR
 "-------------------------------------------------------------------------------
-
-if exists('$BASE16_THEME')
-      \ && (!exists('g:colors_name') || g:colors_name != 'base16-$BASE16_THEME')
-    let base16colorspace=256
-    colorscheme base16-$BASE16_THEME
-endif
+"if exists('$BASE16_THEME')
+"      \ && (!exists('g:colors_name') || g:colors_name != 'base16-$BASE16_THEME')
+"    let base16colorspace=256
+"    colorscheme base16-$BASE16_THEME
+"endif
+let g:python_highlight_all = 1
+autocmd FileType python setlocal foldmethod=indent
