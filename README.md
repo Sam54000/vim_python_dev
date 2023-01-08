@@ -22,5 +22,11 @@ To install manually.
 - For icons and specific glyphs integration: [vim-devicons](https://github.com/ryanoasis/vim-devicons)
 
 ## Automatic install with vim-plug
-install [vim-plug](https://github.com/junegunn/vim-plug)
-No need to install the other aforementionned plugins, the .vimrc in this repository takes care of the rest
+install [vim-plug](https://github.com/junegunn/vim-plug).
+
+No need to install the other aforementionned plugins, the .vimrc in this repository takes care of the rest.
+
+Run `:CocInstall coc-jedi`
+
+## TODO
+Modify dotfiles for mac to deal with slime-plugin and ipython
