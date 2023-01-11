@@ -54,6 +54,8 @@ Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
 " Plug 'junegunn/fzf.vim'
 call plug#end()
 
+let g:pydocstring_doq_path = "C:/Users/Sam19/AppData/Local/Programs/Python/Python310/Scripts/doq.exe"
+
 "-------------------------------------------------------------------------------
 " ALE OPTIONS
 "-------------------------------------------------------------------------------
