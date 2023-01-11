@@ -56,9 +56,15 @@ Plug 'Yggdroot/indentLine'
 Plug 'jpalardy/vim-slime', { 'for': 'python' }
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-python/python-syntax'
+Plug 'flazz/vim-colorschemes'
 Plug 'wakatime/vim-wakatime'
+Plug 'vim-script/ScrollColors'
+Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
 " Plug 'junegunn/fzf.vim'
 call plug#end()
+
+let g:pydocstring_doq_path = "C:/Users/Sam19/AppData/Local/Programs/Python/Python310/Scripts/doq.exe"
+
 "-------------------------------------------------------------------------------
 " ALE OPTIONS
 "-------------------------------------------------------------------------------
@@ -185,10 +191,16 @@ nmap <Space> :call term_sendkeys('!ipython',"\<lt>cr>")<CR>
 "-------------------------------------------------------------------------------
 " OTHER KEY BINDDINGS
 "-------------------------------------------------------------------------------
-nnoremap <S-left> <C-w>h
-nnoremap <S-down> <C-w>j
-nnoremap <S-up> <C-w>k
-nnoremap <S-right> <C-w>l
+" Moving between windows
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Moving between buffers
+nmap <S-h> :bp!<CR>
+nmap <S-l> :bn!<CR>
+
 "------------------------------------------------------------------------------- 
 " FOLDING
 "-------------------------------------------------------------------------------
