@@ -13,7 +13,7 @@ set undodir=~/.vim/undodir "Undo directory
 set undofile	   "Create undofile instead of swap and backup
 set mouse-=a	   "Disable the mouse in gui
 set ttymouse-=a	   "Disable mouse in terminal
-set guifont=RobotoMonoNerdFontCompleteM-Regular:h12 "Font
+set guifont=RobotoMonoNerdFontCompleteM-Regular:h10 "Font
 set fillchars+=vert:\│
 set cursorline "Enable cursor line
 
@@ -46,9 +46,14 @@ Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build'
 Plug 'Yggdroot/indentLine'
 Plug 'jpalardy/vim-slime', { 'for': 'python' }
 Plug 'ryanoasis/vim-devicons'
+Plug 'vim-python/python-syntax'
+Plug 'flazz/vim-colorschemes'
 Plug 'wakatime/vim-wakatime'
+Plug 'vim-script/ScrollColors'
+Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
 " Plug 'junegunn/fzf.vim'
 call plug#end()
+
 "-------------------------------------------------------------------------------
 " ALE OPTIONS
 "-------------------------------------------------------------------------------
@@ -91,9 +96,9 @@ let g:airline_symbols.spell = 'Ꞩ'
 let g:airline_symbols.notexists = ' U'
 " powerline symbols
 let g:airline_left_sep =''
-let g:airline_left_alt_sep = ''
+let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
+let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.colnr = 'C:'
 let g:airline_symbols.readonly = ''
@@ -130,23 +135,24 @@ let g:indentLine_color_term = 241
 let g:indentLine_char_list = ['│']
 
 "-------------------------------------------------------------------------------
-" TOGGLE iPython
+" SLIME 
 "-------------------------------------------------------------------------------
-nnoremap <S-CR> :call TermToggle()<CR>
-vnoremap <S-CR> <ESC>:call TermToggle()<CR>
-inoremap <S-CR> <ESC>:call TermToggle()<CR>
-tnoremap <S-CR> <C-W>:q!<CR>
+let g:slime_target = "vimterminal"
+let g:slime_vimterminal_cmd = "ipython"
+let g:slime_cell_delimiter = "#%%"
 
-function! TermToggle()
-    if term_list() == []
-        vert botright terminal ipython 
-	vertical resize 25	
-    else
-        for term in term_list()
-	    call term_sendkeys(term, "exit") " I want with tmux in term
-        endfor
-    endif
+noremap <S-CR> :call IpythonTerminal()<CR>
+
+xmap <c-c><c-c> <Plug>SlimeRegionSend
+nmap <c-c>s     <Plug>SlimeSendCell
+function! IpythonTerminal()
+  if term_list() == []
+    vert botright terminal ipython
+    vertical resize 65
+    wincmd h
+  endif
 endfunction
+nmap <Space> :call term_sendkeys('!ipython',"\<lt>cr>")<CR>
 
 "-------------------------------------------------------------------------------
 " OTHER KEY BINDDINGS
@@ -155,11 +161,6 @@ nnoremap <S-left> <C-w>h
 nnoremap <S-down> <C-w>j
 nnoremap <S-up> <C-w>k
 nnoremap <S-right> <C-w>l 
-"-------------------------------------------------------------------------------
-" SLIME
-"-------------------------------------------------------------------------------
-let g:slime_target = "vimterminal"
-let g:slime_python_ipython = 1
 
 if exists('$BASE16_THEME')
       \ && (!exists('g:colors_name') || g:colors_name != 'base16-$BASE16_THEME')
