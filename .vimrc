@@ -13,7 +13,7 @@ set undodir=~/.vim/undodir "Undo directory
 set undofile	   "Create undofile instead of swap and backup
 set mouse-=a	   "Disable the mouse in gui
 set ttymouse-=a	   "Disable mouse in terminal
-set guifont=RobotoMonoNerdFontCompleteM-Regular:h10 "Font
+set guifont=RobotoMonoNerdFontCompleteM-Regular:h12 "Font
 set fillchars+=vert:\│
 set cursorline "Enable cursor line
 
@@ -51,6 +51,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'wakatime/vim-wakatime'
 Plug 'vim-script/ScrollColors'
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
+Plug 'christoomey/vim-tmux-navigator'
 " Plug 'junegunn/fzf.vim'
 call plug#end()
 
@@ -159,7 +160,7 @@ nmap <Space> :call term_sendkeys('!ipython',"\<lt>cr>")<CR>
 "-------------------------------------------------------------------------------
 " OTHER KEY BINDDINGS
 "-------------------------------------------------------------------------------
-nnoremap <S-left> <C-w>h
+nnoremap <C-h> <C-w><C-h>
 nnoremap <S-down> <C-w>j
 nnoremap <S-up> <C-w>k
 nnoremap <S-right> <C-w>l 
