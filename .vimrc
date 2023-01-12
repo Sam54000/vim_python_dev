@@ -141,7 +141,7 @@ let g:indentLine_char_list = ['│']
 " SLIME 
 "-------------------------------------------------------------------------------
 let g:slime_target = "vimterminal"
-let g:slime_vimterminal_cmd = "ipython"
+let g:slime_vimterminal_cmd = "conda activate mne"
 let g:slime_cell_delimiter = "#%%"
 
 noremap <S-CR> :call IpythonTerminal()<CR>
@@ -161,9 +161,9 @@ nmap <Space> :call term_sendkeys('!ipython',"\<lt>cr>")<CR>
 " OTHER KEY BINDDINGS
 "-------------------------------------------------------------------------------
 nnoremap <C-h> <C-w><C-h>
-nnoremap <S-down> <C-w>j
-nnoremap <S-up> <C-w>k
-nnoremap <S-right> <C-w>l 
+nnoremap <C-j> <C-w><C-j>
+nnoremap <C-k> <C-w><C-k>
+nnoremap <C-l> <C-w><C-l> 
 
 if exists('$BASE16_THEME')
       \ && (!exists('g:colors_name') || g:colors_name != 'base16-$BASE16_THEME')
