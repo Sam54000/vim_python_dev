@@ -55,7 +55,7 @@ Plug 'christoomey/vim-tmux-navigator'
 " Plug 'junegunn/fzf.vim'
 call plug#end()
 
-let g:pydocstring_doq_path = "C:/Users/Sam19/AppData/Local/Programs/Python/Python310/Scripts/doq.exe"
+let g:pydocstring_doq_path = "/usr/local/bin/doq"
 
 "-------------------------------------------------------------------------------
 " ALE OPTIONS
@@ -109,6 +109,32 @@ let g:airline_symbols.linenr = ' L:'
 let g:airline_symbols.maxlinenr = ' '
 let g:airline_symbols.dirty=' '
 "-------------------------------------------------------------------------------
+"COC-VIM
+"-------------------------------------------------------------------------------
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+"-------------------------------------------------------------------------------
 " NETRW
 "-------------------------------------------------------------------------------
 
@@ -141,7 +167,6 @@ let g:indentLine_char_list = ['│']
 " SLIME 
 "-------------------------------------------------------------------------------
 let g:slime_target = "vimterminal"
-let g:slime_vimterminal_cmd = "conda activate mne"
 let g:slime_cell_delimiter = "#%%"
 
 noremap <S-CR> :call IpythonTerminal()<CR>
@@ -150,7 +175,8 @@ xmap <c-c><c-c> <Plug>SlimeRegionSend
 nmap <c-c>s     <Plug>SlimeSendCell
 function! IpythonTerminal()
   if term_list() == []
-    vert botright terminal ipython
+    vert botright terminal conda activate mne
+
     vertical resize 65
     wincmd h
   endif
@@ -164,7 +190,14 @@ nnoremap <C-h> <C-w><C-h>
 nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>
 nnoremap <C-l> <C-w><C-l> 
+"-------------------------------------------------------------------------------
+"FOLDING
+"-------------------------------------------------------------------------------
+autocmd FileType python setlocal foldmethod=indent
 
+"-------------------------------------------------------------------------------
+"COLORS
+"-------------------------------------------------------------------------------
 if exists('$BASE16_THEME')
       \ && (!exists('g:colors_name') || g:colors_name != 'base16-$BASE16_THEME')
     let base16colorspace=256
