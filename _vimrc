@@ -3,13 +3,13 @@
 "------------------------------------------------------------------------------- 
 set number	   "Display the current line absolute number
 set relativenumber "Set relative line numbers
-set scrolloff=8  "Set the number of line the cursor stops before botom
+set scrolloff=8    "Set the number of line the cursor stops before botom
 set showcmd	   "Show the commands that being typed
 set noshowmode     "No nee to show the mode in the command line
 set noerrorbells t_vb=  "stop the annoying bell when error
 set noswapfile	   "No swapfile generation
 set nobackup	   "No backup
-set undodir=~/Vim/undodir "Undo directory
+set undodir= $VIMRUNTIME\undodir "Undo directory
 set undofile	   "Create undofile instead of swap and backup
 set mouse-=a	   "Disable the mouse in gui
 set ttymouse-=a	   "Disable mouse in terminal
@@ -20,15 +20,21 @@ set cursorline "Enable cursor line
 
 " Change Color when entering Insert Mode #005f00
 autocmd InsertEnter * highlight  CursorLine guibg=#1f401f ctermbg=22 ctermfg=None
-
+if (has("termguicolors"))
+  set termguicolors
+endif
 " Revert Color to default when leaving Insert Mode
 autocmd InsertLeave * highlight  CursorLine guibg=#262626 ctermbg=235 ctermfg=None
 set updatetime=1500
+let g:enable_bold_font = 1
+let g:enable_italic_font = 1
+let g:hybrid_transparent_background = 0
 let base16colorspace=256   		" Access colors present in 256 colorspace
-"-------------------------------------------------------------------------------
-" FOLDING
-"-------------------------------------------------------------------------------
-
+set background=dark
+colorscheme new_york_windows
+set colorcolumn=80	   		" Set the ruler
+set guicursor+=a:blinkon0		" Disable blinking cursor
+highlight LineNr guifg=#303030
 "-------------------------------------------------------------------------------
 " SEARCH PARAMETERS
 "------------------------------------------------------------------------------- 
