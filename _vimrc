@@ -15,15 +15,19 @@ set mouse-=a	   "Disable the mouse in gui
 set ttymouse-=a	   "Disable mouse in terminal
 set guifont=RobotoMono_NFM:h9 "Font
 autocmd GUIEnter * simalt ~x
+
 set cursorline "Enable cursor line
 
 " Change Color when entering Insert Mode #005f00
-autocmd InsertEnter * highlight  CursorLine guibg=#005f00 ctermbg=22 ctermfg=None
+autocmd InsertEnter * highlight  CursorLine guibg=#1f401f ctermbg=22 ctermfg=None
 
 " Revert Color to default when leaving Insert Mode
 autocmd InsertLeave * highlight  CursorLine guibg=#262626 ctermbg=235 ctermfg=None
 set updatetime=1500
 let base16colorspace=256   		" Access colors present in 256 colorspace
+"-------------------------------------------------------------------------------
+" FOLDING
+"-------------------------------------------------------------------------------
 
 "-------------------------------------------------------------------------------
 " SEARCH PARAMETERS
@@ -43,6 +47,7 @@ call plug#begin()
 Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'w0ng/vim-hybrid'
 Plug 'dense-analysis/ale'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -52,11 +57,11 @@ Plug 'Yggdroot/indentLine'
 Plug 'jpalardy/vim-slime', { 'for': 'python' }
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-python/python-syntax'
-Plug 'flazz/vim-colorschemes'
 Plug 'wakatime/vim-wakatime'
-Plug 'vim-script/ScrollColors'
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
-Plug 'lifepillar/vim-colortemplate'
+Plug 'kristijanhusak/vim-hybrid-material'
+Plug 'ajmwagar/vim-deus'
+Plug 'tmhedberg/SimpylFold'
 " Plug 'junegunn/fzf.vim'
 call plug#end()
 
@@ -90,13 +95,17 @@ let g:ale_fix_on_save = 1
 "-------------------------------------------------------------------------------
 " AIRLINE
 "-------------------------------------------------------------------------------
-
+let g:airline_theme='hybrid'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 " unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
 let airline#extensions#ale#error_symbol = 'E:'
 let airline#extensions#ale#warning_symbol = 'W:'
 let g:airline_symbols.crypt = 'c'
@@ -104,9 +113,9 @@ let g:airline_symbols.paste = 'p'
 let g:airline_symbols.spell = 'Ꞩ'
 let g:airline_symbols.notexists = ' U'
 " powerline symbols
-let g:airline_left_sep =''
+let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
+let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.colnr = 'C:'
@@ -121,14 +130,11 @@ let g:airline_symbols.dirty=' '
 augroup ProjectDrawer
   autocmd!
   autocmd VimEnter * :Lexplore
-  autocmd VimEnter * highlight VertSplit guifg=lightgrey guibg=black
   autocmd VimEnter * wincmd l
   autocmd colorscheme * highlight clear SignColumn
   "Overide colorscheme highlighting
   autocmd colorscheme * highlight ALEErrorSign term=reverse ctermfg=0 ctermbg=1 guifg=#ff0000 
   autocmd colorscheme * highlight ALEWarningSign term=reverse ctermfg=0 ctermbg=1 guifg=#fcd12a
-  autocmd VimEnter * highlight VertSplit guifg=#3b3b3b guibg=black
-  autocmd VimEnter * highlight clear LineNr " Set line number color to transparent
 augroup ENDautocmd VimEnter * Vex
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 0
@@ -198,10 +204,17 @@ nnoremap <C-l> <C-w>l
 nmap <S-h> :bp!<CR>
 nmap <S-l> :bn!<CR>
 
-"------------------------------------------------------------------------------- 
-" FOLDING
 "-------------------------------------------------------------------------------
-autocmd FileType python setlocal foldmethod=indent
+" PYDOCSTRING
+"-------------------------------------------------------------------------------
+let g:pydocstring_formatter = 'numpy'
+
+"------------------------------------------------------------------------------- 
+" SIMPLYFOLD
+"-------------------------------------------------------------------------------
+let g:SimpylFold_docstring_preview = 1
+let g:SimpylFold_fold_docstring = 0
+
 "-------------------------------------------------------------------------------
 " COLOR
 "-------------------------------------------------------------------------------
