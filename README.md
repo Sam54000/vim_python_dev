@@ -1,4 +1,4 @@
-# VIM configuration for python development
+# Personal VIM configuration for python development
 ## Requirements:
 - Python linter [pylama](https://klen.github.io/pylama/) `pip install pylama`
 - Python fixers [black](https://github.com/psf/black) `pip install black`
