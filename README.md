@@ -10,6 +10,11 @@
 - iPython needs to be installed too `pip install ipython`
 - [nodejs](https://nodejs.org/en/download/)
 - [jedi-python-language-server](https://github.com/pappasam/jedi-language-server)
+## Installation
+create a folder in `$HOME/codes`
+Then
+`git clone https://github.com/Sam54000/vim`
+
 ## Manual Plugins Installation
 To install manually.
 - For statusbar [airline](https://github.com/vim-airline/vim-airline) and [aireline-themes](https://github.com/vim-airline/vim-airline-themes#vim-airline-themes--)
@@ -27,6 +32,7 @@ install [vim-plug](https://github.com/junegunn/vim-plug).
 No need to install the other aforementionned plugins, the .vimrc in this repository takes care of the rest.
 
 Run `:CocInstall coc-jedi`
+
 
 ## TODO
 Modify dotfiles for mac to deal with slime-plugin and ipython
