@@ -10,10 +10,28 @@
 - iPython needs to be installed too `pip install ipython`
 - [nodejs](https://nodejs.org/en/download/)
 - [jedi-python-language-server](https://github.com/pappasam/jedi-language-server)
+- 
 ## Installation
-create a folder in `$HOME/codes`
-Then
-`git clone https://github.com/Sam54000/vim`
+### On macOS
+* Install vim: [`brew install vim`](https://formulae.brew.sh/formula/vim) for vim and/or download [macvim](https://github.com/macvim-dev/macvim)
+* Clone the repo
+  - `mkdir ~/codes`
+  - `cd ~/codes
+  - `git clone https://github.com/Sam54000/vim`
+* Create symbolic links: 
+  - `ln -s ~/codes/vim/.vimrc ~/.vimrc` (or use `sudo` if permission denied)
+  - `ln -s ~/codes/vim/.gvimrc ~/.gvimrc`
+ ### On MS Windows 
+ * Install vim: [download gvim](https://ftp.nluug.nl/pub/vim/pc/gvim90.exe)
+* Clone the repo
+  - `mkdir $HOME/codes`
+  - `cd $HOME\codes`
+  - `git clone https://github.com/Sam54000/vim`
+* Create symbolic links:
+Run cmd in administrator mode
+  - `mklink "C:Program Files (x84)/Vim/_vimrc" $HOME/codes/vim/_vimrc`
+  - `mklink "C:Program Files (x84)/Vim/_gvimrc" $HOME/codes/vim/_gvimrc`
+  - And a personal colorscheme optimal for working during the night (inspired from hybrid_reverse from [vim-hybrid-material](https://github.com/kristijanhusak/vim-hybrid-material)) `mklink "C:Program Files (x84)/Vim/vim90/colors/new_york_windows.vim" $HOME/codes/vim/colorschemes/new_york_windows.vim`
 
 ## Manual Plugins Installation
 To install manually.
