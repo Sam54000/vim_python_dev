@@ -25,7 +25,7 @@
  * Install vim: [download gvim](https://ftp.nluug.nl/pub/vim/pc/gvim90.exe)
 * Clone the repo
   - `mkdir $HOME/codes`
-  - `cd $HOME\codes`
+  - `cd $HOME/codes`
   - `git clone https://github.com/Sam54000/vim`
 * Create symbolic links:
 Run cmd in administrator mode
