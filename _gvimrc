@@ -1,12 +1,20 @@
 "-------------------------------------------------------------------------------
 " GUI INSTANTIATION 
 "-------------------------------------------------------------------------------
+let g:enable_bold_font = 1
+let g:enable_italic_font = 1
+let g:hybrid_transparent_background = 0
 
-let base16colorspace=256   		" Access colors present in 256 colorspace
-colorscheme base16-spacemacs 		" Set the colortheme
+if (has("termguicolors"))
+  set termguicolors
+endif
+set background=dark
+colorscheme hybrid_reverse_new_york
+"colorscheme base16-irblack 		
 set colorcolumn=80	   		" Set the ruler
 set guicursor+=a:blinkon0		" Disable blinking cursor
 set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
+highlight LineNr guifg=#303030

@@ -56,6 +56,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'wakatime/vim-wakatime'
 Plug 'vim-script/ScrollColors'
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
+Plug 'lifepillar/vim-colortemplate'
 " Plug 'junegunn/fzf.vim'
 call plug#end()
 
