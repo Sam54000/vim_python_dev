@@ -9,32 +9,33 @@ set noshowmode     "No nee to show the mode in the command line
 set noerrorbells t_vb=  "stop the annoying bell when error
 set noswapfile	   "No swapfile generation
 set nobackup	   "No backup
-set undodir= $VIMRUNTIME\undodir "Undo directory
+set undodir ="$HOMEDRIVE/$HOMEPATH/vimfiles/undodir" "Undo directory
 set undofile	   "Create undofile instead of swap and backup
 set mouse-=a	   "Disable the mouse in gui
 set ttymouse-=a	   "Disable mouse in terminal
-set guifont=RobotoMono_NFM:h9 "Font
 autocmd GUIEnter * simalt ~x
 
 set cursorline "Enable cursor line
 
 " Change Color when entering Insert Mode #005f00
 autocmd InsertEnter * highlight  CursorLine guibg=#1f401f ctermbg=22 ctermfg=None
-if (has("termguicolors"))
-  set termguicolors
-endif
 " Revert Color to default when leaving Insert Mode
 autocmd InsertLeave * highlight  CursorLine guibg=#262626 ctermbg=235 ctermfg=None
-set updatetime=1500
+
 let g:enable_bold_font = 1
 let g:enable_italic_font = 1
-let g:hybrid_transparent_background = 0
 let base16colorspace=256   		" Access colors present in 256 colorspace
 set background=dark
 colorscheme new_york_windows
 set colorcolumn=80	   		" Set the ruler
 set guicursor+=a:blinkon0		" Disable blinking cursor
 highlight LineNr guifg=#303030
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
+
+if (has("termguicolors"))
+  set termguicolors
+endif
 "-------------------------------------------------------------------------------
 " SEARCH PARAMETERS
 "------------------------------------------------------------------------------- 
@@ -71,7 +72,7 @@ Plug 'tmhedberg/SimpylFold'
 " Plug 'junegunn/fzf.vim'
 call plug#end()
 
-let g:pydocstring_doq_path = "C:/Users/Sam19/AppData/Local/Programs/Python/Python310/Scripts/doq.exe"
+let g:pydocstring_doq_path = "$PYTHONPATH/Scripts/doq.exe"
 
 "-------------------------------------------------------------------------------
 " ALE OPTIONS
@@ -169,7 +170,7 @@ endfunction
 
 " Highlight the symbol and its references when holding the cursor
 nnoremap <Tab> :silent call CocActionAsync('highlight')
-nnoremap <S-C-r> <Plug>(coc-rename)
+nnoremap <A-r> <Plug>(coc-rename)
 "-------------------------------------------------------------------------------
 " INDENTLINE
 "-------------------------------------------------------------------------------
@@ -196,7 +197,7 @@ function! IpythonTerminal()
   endif
 endfunction
 nmap <Space> :call term_sendkeys('!ipython',"\<lt>cr>")<CR>
-
+"
 "-------------------------------------------------------------------------------
 " OTHER KEY BINDDINGS
 "-------------------------------------------------------------------------------
@@ -221,12 +222,4 @@ let g:pydocstring_formatter = 'numpy'
 let g:SimpylFold_docstring_preview = 1
 let g:SimpylFold_fold_docstring = 0
 
-"-------------------------------------------------------------------------------
-" COLOR
-"-------------------------------------------------------------------------------
-"if exists('$BASE16_THEME')
-"      \ && (!exists('g:colors_name') || g:colors_name != 'base16-$BASE16_THEME')
-"    let base16colorspace=256
-"    colorscheme base16-$BASE16_THEME
-"endif
 let g:python_highlight_all = 1

@@ -1,6 +1,4 @@
-" File:       hybrid_reverse.vim
-" Maintainer: Kristijan Husak (kristijanhusak)
-" URL:        https://github.com/kristijanhusak/vim-hybrid-material
+" File:       new_york_windows.vim
 " BASED ON:   https://github.com/w0ng/vim-hybrid
 " Modified:   16 Apr 2016
 " License:    MIT
@@ -77,7 +75,7 @@ endif
 
 let s:style = &background
 
-let g:colors_name = "hybrid_reverse"
+let g:colors_name = "new_york_windows"
 
 "}}}
 " GUI And Cterm Palettes:"{{{
