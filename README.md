@@ -23,10 +23,10 @@ This is **VERY** far from being perfect, the configuration is still under improv
   - `git clone https://github.com/Sam54000/vim`
 * Create symbolic links:
   - Links to vin config files  
-  ```
-  cd && ln -s ~/codes/vim/.vimrc
-  cd && ln -s ~/codes/vim/.gvimrc
-  ```
+ ```
+ cd && ln -s ~/codes/vim/.vimrc
+ cd && ln -s ~/codes/vim/.gvimrc
+ ```
   - Add personal colorscheme which appears to be optimal for working during the night (inspired from hybrid_reverse from [vim-hybrid-material](https://github.com/kristijanhusak/vim-hybrid-material)) 
  ```
  cd && ln -s $HOME/codes/vim/colorscheme/new_york_mac.vim $VIMRUNTIME/colors/new_york_mac.vim
