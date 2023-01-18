@@ -22,9 +22,9 @@ This is **VERY** far from being perfect, the configuration is still under improv
   - `cd ~/codes
   - `git clone https://github.com/Sam54000/vim`
 * Create symbolic links: 
-  - `cd && ln -s ~/codes/vim/.vimrc` (or use `sudo` if permission denied)
-  - `cd && ln -s ~/codes/vim/.gvimrc`
-  - Aadd personal colorscheme which appears to be optimal for working during the night (inspired from hybrid_reverse from [vim-hybrid-material](https://github.com/kristijanhusak/vim-hybrid-material)) `cd && ln -s $VIMRUNTIME/colors/new_york_mac.vim $HOME/codes/vim/colorscheme/new_york_mac.vim` color theme for mac come with a higher contrast due to retina screens.
+  - ```cd && ln -s ~/codes/vim/.vimrc``` (or use `sudo` if permission denied)
+  - ```cd && ln -s ~/codes/vim/.gvimrc```
+  - Aadd personal colorscheme which appears to be optimal for working during the night (inspired from hybrid_reverse from [vim-hybrid-material](https://github.com/kristijanhusak/vim-hybrid-material)) ```cd && ln -s $HOME/codes/vim/colorscheme/new_york_mac.vim $VIMRUNTIME/colors/new_york_mac.vim``` color theme for mac come with a higher contrast due to retina screens.
 
  ### On MS Windows 
  * Install vim: [download gvim](https://ftp.nluug.nl/pub/vim/pc/gvim90.exe)
@@ -36,7 +36,7 @@ This is **VERY** far from being perfect, the configuration is still under improv
 Run cmd in administrator mode
   - `mklink "C:Program Files (x84)/Vim/_vimrc" $HOME/codes/vim/_vimrc`
   - `mklink "C:Program Files (x84)/Vim/_gvimrc" $HOME/codes/vim/_gvimrc`
-  - Add personal colorscheme which appears to be optimal for working during the night (inspired from hybrid_reverse from [vim-hybrid-material](https://github.com/kristijanhusak/vim-hybrid-material)) `mklink "$VIMRUNTIME/colors/new_york_windows.vim" $HOME/codes/vim/colorscheme/new_york_windows.vim`
+  - Add personal colorscheme which appears to be optimal for working during the night (inspired from hybrid_reverse from [vim-hybrid-material](https://github.com/kristijanhusak/vim-hybrid-material)) ```mklink "$VIMRUNTIME/colors/new_york_windows.vim" $HOME/codes/vim/colorscheme/new_york_windows.vim```
 
 ## Automatic install with vim-plug
 install [vim-plug](https://github.com/junegunn/vim-plug).
