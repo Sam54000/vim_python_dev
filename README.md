@@ -46,7 +46,7 @@ No need to install the other aforementionned plugins, the .vimrc in this reposit
 Run `:CocInstall coc-jedi`
 
 ## Manual Plugins Installation
-If you want to install manually (it was what I used to do before moving to different computer everytime)
+If you want to install manually (it was what I used to do before realizing that I have to do this repetitive task on each new computers)
 
 - For statusbar [airline](https://github.com/vim-airline/vim-airline) and [aireline-themes](https://github.com/vim-airline/vim-airline-themes#vim-airline-themes--)
 - For coding style, errors linting, fixing [ale](https://github.com/dense-analysis/ale#usage)
