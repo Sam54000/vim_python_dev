@@ -22,8 +22,8 @@ This is **VERY** far from being perfect, the configuration is still under improv
   - `cd ~/codes
   - `git clone https://github.com/Sam54000/vim`
 * Create symbolic links: 
-  - `ln -s ~/codes/vim/.vimrc ~/.vimrc` (or use `sudo` if permission denied)
-  - `ln -s ~/codes/vim/.gvimrc ~/.gvimrc`
+  - `cd && ln -s ~/codes/vim/.vimrc` (or use `sudo` if permission denied)
+  - `cd && ln -s ~/codes/vim/.gvimrc`
  ### On MS Windows 
  * Install vim: [download gvim](https://ftp.nluug.nl/pub/vim/pc/gvim90.exe)
 * Clone the repo
