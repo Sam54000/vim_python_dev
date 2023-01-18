@@ -24,7 +24,7 @@ This is **VERY** far from being perfect, the configuration is still under improv
 * Create symbolic links: 
   - `cd && ln -s ~/codes/vim/.vimrc` (or use `sudo` if permission denied)
   - `cd && ln -s ~/codes/vim/.gvimrc`
-  - Aadd personal colorscheme which appears to be optimal for working during the night (inspired from hybrid_reverse from [vim-hybrid-material](https://github.com/kristijanhusak/vim-hybrid-material)) `cd && ln -s "$VIMRUNTIME/colors/new_york_mac.vim" $HOME/codes/vim/colorschemes/new_york_mac.vim` color theme for mac come with a higher contrast due to retina screens.
+  - Aadd personal colorscheme which appears to be optimal for working during the night (inspired from hybrid_reverse from [vim-hybrid-material](https://github.com/kristijanhusak/vim-hybrid-material)) `cd && ln -s $VIMRUNTIME/colors/new_york_mac.vim $HOME/codes/vim/colorschemes/new_york_mac.vim` color theme for mac come with a higher contrast due to retina screens.
 
  ### On MS Windows 
  * Install vim: [download gvim](https://ftp.nluug.nl/pub/vim/pc/gvim90.exe)
