@@ -195,10 +195,10 @@ nnoremap <C-h> <C-w><C-h>
 nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>
 nnoremap <C-l> <C-w><C-l> 
-noremap<Up><Nop>
-noremap<Down><Nop>
-noremap<Left>><Nop>
-noremap<Right><Nop>
+noremap<Up> <Nop>
+noremap<Down> <Nop>
+noremap<Left> <Nop>
+noremap<Right> <Nop>
 "-------------------------------------------------------------------------------
 "FOLDING
 "-------------------------------------------------------------------------------
