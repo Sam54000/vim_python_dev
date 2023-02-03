@@ -9,19 +9,21 @@ set noshowmode     "No nee to show the mode in the command line
 set noerrorbells visualbell t_vb=  "stop the annoying bell when error
 set noswapfile	   "No swapfile generation
 set nobackup	   "No backup
-set undodir=~/.vim/undodir "Undo directory
+set undodir="$VIMRUNTIME/undodir"Undo directory
 set undofile	   "Create undofile instead of swap and backup
 set mouse-=a	   "Disable the mouse in gui
 set ttymouse-=a	   "Disable mouse in terminal
 set guifont=RobotoMonoNerdFontCompleteM-Regular:h12 "Font
 set fillchars+=vert:\│
 set cursorline "Enable cursor line
-
 " Change Color when entering Insert Mode
 autocmd InsertEnter * highlight  CursorLine guibg=#005f00 ctermbg=22 ctermfg=None
-
 " Revert Color to default when leaving Insert Mode
 autocmd InsertLeave * highlight  CursorLine guibg=#262626 ctermbg=235 ctermfg=None
+let base16colorspace=256   		" Access colors present in 256 colorspace
+colorscheme base16-irblack 		" Set the colortheme
+set colorcolumn=80	   		" Set the ruler
+
 "-------------------------------------------------------------------------------
 " SEARCH PARAMETERS
 "------------------------------------------------------------------------------- 
@@ -30,10 +32,10 @@ set smartcase	   "But if a case is in typed, respect it
 set incsearch	   "Highlight the pattern live 
 set hlsearch	   "Highlight the search result
 nnoremap <CR> :noh<CR><CR>:<backspace>
+
 "-------------------------------------------------------------------------------
 " PLUGINS
 "-------------------------------------------------------------------------------
-
 call plug#begin()
 Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline'
@@ -47,20 +49,17 @@ Plug 'Yggdroot/indentLine'
 Plug 'jpalardy/vim-slime', { 'for': 'python' }
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-python/python-syntax'
-Plug 'flazz/vim-colorschemes'
 Plug 'wakatime/vim-wakatime'
-Plug 'vim-script/ScrollColors'
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'tmhedberg/SimpylFold'
 " Plug 'junegunn/fzf.vim'
 call plug#end()
-
 let g:pydocstring_doq_path = "/usr/local/bin/doq"
 
 "-------------------------------------------------------------------------------
 " ALE OPTIONS
 "-------------------------------------------------------------------------------
-
 let g:ale_linters = {
 			\ 'python' : ['pylama'],
 			\}
@@ -81,16 +80,20 @@ highlight ALEErrorSign ctermfg=red
 highlight ALEWarningSign ctermfg=yellow
 let g:ale_completion_enabled = 0
 let g:ale_disable_lsp = 1
+
 "-------------------------------------------------------------------------------
 " AIRLINE
 "-------------------------------------------------------------------------------
-
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 " unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
 let airline#extensions#ale#error_symbol = 'E:'
 let airline#extensions#ale#warning_symbol = 'W:'
 let g:airline_symbols.crypt = 'c'
@@ -98,51 +101,20 @@ let g:airline_symbols.paste = 'p'
 let g:airline_symbols.spell = 'Ꞩ'
 let g:airline_symbols.notexists = ' U'
 " powerline symbols
-let g:airline_left_sep =''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.colnr = 'C:'
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ' L:'
 let g:airline_symbols.maxlinenr = ' '
 let g:airline_symbols.dirty=' '
-"-------------------------------------------------------------------------------
-"COC-VIM
-"-------------------------------------------------------------------------------
-inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
-" Make <CR> to accept selected completion item or notify coc.nvim to format
-" <C-g>u breaks current undo, please make your own choice
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
-
-"-------------------------------------------------------------------------------
-"PYDOCSTRING
-"-------------------------------------------------------------------------------
-let g:pydocstring_formatter = 'numpy'
 
 "-------------------------------------------------------------------------------
 " NETRW
 "-------------------------------------------------------------------------------
-
 augroup ProjectDrawer
   autocmd!
   autocmd VimEnter * :Lexplore
@@ -162,9 +134,28 @@ let g:netrw_winsize = 18
 let g:netrw_banner=0
 
 "-------------------------------------------------------------------------------
+"COC-VIM
+"-------------------------------------------------------------------------------
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+" Highlight the symbol and its references when holding the cursor
+nnoremap <Tab> :silent call CocActionAsync('highlight')
+nnoremap <A-r> <Plug>(coc-rename)
+
+"-------------------------------------------------------------------------------
 " INDENTLINE
 "-------------------------------------------------------------------------------
-
 let g:indentLine_color_term = 241
 let g:indentLine_char_list = ['│']
 
@@ -173,15 +164,12 @@ let g:indentLine_char_list = ['│']
 "-------------------------------------------------------------------------------
 let g:slime_target = "vimterminal"
 let g:slime_cell_delimiter = "#%%"
-
 noremap <S-CR> :call IpythonTerminal()<CR>
-
 xmap <c-c><c-c> <Plug>SlimeRegionSend
 nmap <c-c>s     <Plug>SlimeSendCell
 function! IpythonTerminal()
   if term_list() == []
     vert botright terminal conda activate mne
-
     vertical resize 65
     wincmd h
   endif
@@ -195,10 +183,12 @@ nnoremap <C-h> <C-w><C-h>
 nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>
 nnoremap <C-l> <C-w><C-l> 
-noremap<Up><Nop>
-noremap<Down><Nop>
-noremap<Left>><Nop>
-noremap<Right><Nop>
+
+"-------------------------------------------------------------------------------
+"PYDOCSTRING
+"-------------------------------------------------------------------------------
+let g:pydocstring_formatter = 'numpy'
+
 "-------------------------------------------------------------------------------
 "FOLDING
 "-------------------------------------------------------------------------------
@@ -212,3 +202,11 @@ if exists('$BASE16_THEME')
     let base16colorspace=256
     colorscheme base16-$BASE16_THEME
 endif
+
+"------------------------------------------------------------------------------- 
+" SIMPLYFOLD
+"-------------------------------------------------------------------------------
+let g:SimpylFold_docstring_preview = 1
+let g:SimpylFold_fold_docstring = 0
+let g:python_highlight_all = 1
+

@@ -67,7 +67,6 @@ Plug 'vim-python/python-syntax'
 Plug 'wakatime/vim-wakatime'
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
 Plug 'kristijanhusak/vim-hybrid-material'
-Plug 'ajmwagar/vim-deus'
 Plug 'tmhedberg/SimpylFold'
 " Plug 'junegunn/fzf.vim'
 call plug#end()
