@@ -20,8 +20,6 @@ set cursorline "Enable cursor line
 autocmd InsertEnter * highlight  CursorLine guibg=#005f00 ctermbg=22 ctermfg=None
 " Revert Color to default when leaving Insert Mode
 autocmd InsertLeave * highlight  CursorLine guibg=#262626 ctermbg=235 ctermfg=None
-let base16colorspace=256   		" Access colors present in 256 colorspace
-colorscheme base16-irblack 		" Set the colortheme
 set colorcolumn=80	   		" Set the ruler
 
 "-------------------------------------------------------------------------------
