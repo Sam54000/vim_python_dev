@@ -18,7 +18,6 @@ set termguicolors
 set guifont=RobotoMonoNerdFontCompleteM-Regular:h12 "Font
 set fillchars+=vert:\│
 set cursorline "Enable cursor line
-<<<<<<< HEAD
 set colorcolumn=80
 
 " Change Color when entering Insert Mode
@@ -40,14 +39,6 @@ autocmd ColorScheme * hi pythonRepeat cterm=bold guifg=#088400
 autocmd ColorScheme * hi pythonStatement cterm=bold guifg=#3580CE
 autocmd ColorScheme * hi pythonDecorator guifg=#FABD2F
 "
-=======
-" Change Color when entering Insert Mode
-autocmd InsertEnter * highlight  CursorLine guibg=#005f00 ctermbg=22 ctermfg=None
-" Revert Color to default when leaving Insert Mode
-autocmd InsertLeave * highlight  CursorLine guibg=#262626 ctermbg=235 ctermfg=None
-set colorcolumn=80	   		" Set the ruler
-
->>>>>>> 68a36b5dc72d348a579d6b1bb7546a8a8dc330cf
 "-------------------------------------------------------------------------------
 " SEARCH PARAMETERS
 "------------------------------------------------------------------------------- 
@@ -72,7 +63,6 @@ Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build'
 Plug 'Yggdroot/indentLine'
 Plug 'jpalardy/vim-slime', { 'for': 'python' }
 Plug 'ryanoasis/vim-devicons'
-<<<<<<< HEAD
 Plug 'sheerun/vim-polyglot'
 Plug 'morhetz/gruvbox'
 Plug 'wakatime/vim-wakatime'
@@ -83,16 +73,6 @@ Plug 'preservim/tagbar'
 Plug 'github/copilot.vim' 
 " Plug 'junegunn/fzf.vim'
 call plug#end()
-=======
-Plug 'vim-python/python-syntax'
-Plug 'wakatime/vim-wakatime'
-Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'tmhedberg/SimpylFold'
-" Plug 'junegunn/fzf.vim'
-call plug#end()
-let g:pydocstring_doq_path = "/usr/local/bin/doq"
->>>>>>> 68a36b5dc72d348a579d6b1bb7546a8a8dc330cf
 
 "-------------------------------------------------------------------------------
 " ALE OPTIONS
@@ -116,19 +96,12 @@ highlight ALEErrorSign ctermfg=red ctermbg=None
 highlight ALEWarningSign ctermfg=yellow ctermbg=None
 let g:ale_completion_enabled = 0
 let g:ale_disable_lsp = 1
-<<<<<<< HEAD
 let g:ale_fix_on_save = 1
-=======
->>>>>>> 68a36b5dc72d348a579d6b1bb7546a8a8dc330cf
 
 "-------------------------------------------------------------------------------
 " AIRLINE
 "-------------------------------------------------------------------------------
-<<<<<<< HEAD
-
-=======
 let g:airline#extensions#tabline#enabled = 1
->>>>>>> 68a36b5dc72d348a579d6b1bb7546a8a8dc330cf
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
@@ -156,7 +129,6 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ' L:'
 let g:airline_symbols.maxlinenr = ' '
 let g:airline_symbols.dirty=' '
-<<<<<<< HEAD
 "-------------------------------------------------------------------------------
 "COC-VIM
 "-------------------------------------------------------------------------------
@@ -186,9 +158,6 @@ endif
 "-------------------------------------------------------------------------------
 "DOCSTRING
 "-------------------------------------------------------------------------------
-
-=======
->>>>>>> 68a36b5dc72d348a579d6b1bb7546a8a8dc330cf
 
 "-------------------------------------------------------------------------------
 " NETRW
@@ -237,8 +206,6 @@ nnoremap <A-r> <Plug>(coc-rename)
 let g:indentLine_color_term = 241
 let g:indentLine_char_list = ['│']
 
-<<<<<<< HEAD
-=======
 "-------------------------------------------------------------------------------
 " SLIME 
 "-------------------------------------------------------------------------------
@@ -255,7 +222,6 @@ function! IpythonTerminal()
   endif
 endfunction
 nmap <Space> :call term_sendkeys('!ipython',"\<lt>cr>")<CR>
->>>>>>> 68a36b5dc72d348a579d6b1bb7546a8a8dc330cf
 
 "-------------------------------------------------------------------------------
 " OTHER KEY BINDDINGS
@@ -264,19 +230,12 @@ nnoremap <C-h> <C-w><C-h>
 nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>
 nnoremap <C-l> <C-w><C-l> 
-<<<<<<< HEAD
-noremap<Up> <Nop>
-noremap<Down> <Nop>
-noremap<Left> <Nop>
-noremap<Right> <Nop>
-=======
 
 "-------------------------------------------------------------------------------
 "PYDOCSTRING
 "-------------------------------------------------------------------------------
-let g:pydocstring_formatter = 'numpy'
+let g:pydocstring_formatter = 'google'
 
->>>>>>> 68a36b5dc72d348a579d6b1bb7546a8a8dc330cf
 "-------------------------------------------------------------------------------
 "FOLDING
 "-------------------------------------------------------------------------------
@@ -288,14 +247,6 @@ let g:python_highlight_all = 1
 "-------------------------------------------------------------------------------
 "COLORS
 "-------------------------------------------------------------------------------
-<<<<<<< HEAD
-"if exists('$BASE16_THEME')
-"      \ && (!exists('g:colors_name') || g:colors_name != 'base16-$BASE16_THEME')
-"    let base16colorspace=256
-"    colorscheme base16-$BASE16_THEME
-"endif
-colorscheme gruvbox
-=======
 if exists('$BASE16_THEME')
       \ && (!exists('g:colors_name') || g:colors_name != 'base16-$BASE16_THEME')
     let base16colorspace=256
@@ -308,5 +259,3 @@ endif
 let g:SimpylFold_docstring_preview = 1
 let g:SimpylFold_fold_docstring = 0
 let g:python_highlight_all = 1
-
->>>>>>> 68a36b5dc72d348a579d6b1bb7546a8a8dc330cf
